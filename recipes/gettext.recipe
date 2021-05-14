@@ -10,10 +10,12 @@ class Recipe(recipe.Recipe):
     tarball_checksum = 'c77d0da3102aec9c07f43671e60611ebff89a996ef159497ce8e59d075786b12'
     srcdir = 'gettext-runtime'
 
+    configure_options = '--disable-libasprintf'
+
     def prepare (self):
         if self.config.target_platform in (Platform.ANDROID):
             self.deps += ['libiconv']
-            arch_name = android.get_android_arch_name(self.config.target_arch)
-            stl_libdir = os.path.join(self.config.toolchain_prefix, 'libs', arch_name)
-            self.append_env('LDFLAGS', '-L' + stl_libdir, '-lc++_shared')
+            #arch_name = android.get_android_arch_name(self.config.target_arch)
+            #stl_libdir = os.path.join(self.config.toolchain_prefix, 'libs', arch_name)
+            # self.append_env('LDFLAGS', '-L' + stl_libdir, '-lc++_shared')
 
