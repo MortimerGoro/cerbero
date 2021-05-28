@@ -24,12 +24,12 @@ from cerbero.bootstrap.bootstrapper import register_toolchain_bootstrapper
 from cerbero.config import Distro, FatalError
 from cerbero.utils import _, shell
 
-NDK_VERSION = 'r21'
+NDK_VERSION = 'r22b'
 NDK_BASE_URL = 'https://dl.google.com/android/repository/android-ndk-%s-%s-%s.zip'
 NDK_CHECKSUMS = {
-    'android-ndk-r21-linux-x86_64.zip': 'b65ea2d5c5b68fb603626adcbcea6e4d12c68eb8a73e373bbb9d23c252fc647b',
-    'android-ndk-r21-darwin-x86_64.zip': 'b82a49ec591d6f283acc7a241a8c56a14788320bf85a3375b5f2309b3b0c9b45',
-    'android-ndk-r21-windows-x86_64.zip': 'faf5a09f78dc7b350b2b77e71031d039191f2af66ac7c99494cd7d5a65e8d147',
+    'android-ndk-r22b-linux-x86_64.zip': 'ac3a0421e76f71dd330d0cd55f9d99b9ac864c4c034fc67e0d671d022d4e806b',
+    'android-ndk-r22b-darwin-x86_64.zip': 'b05d2087a6346d66cd26a1dc89fcc877b59e49feab6269b665aa67c784a81512',
+    'android-ndk-r22b-windows-x86_64.zip': '6d2fe8dbba8342634e88ecbaf321bcbfc07e579b6281f426639002dd35046d03',
 }
 
 class AndroidBootstrapper (BootstrapperBase):
