@@ -33,6 +33,8 @@ class Recipe(recipe.Recipe):
         'openssl/0002-win-onecore-Build-with-APPCONTAINER-for-UWP-compat.patch',
         # https://github.com/openssl/openssl/pull/13476 '1.1.1i'
         'openssl/0001-Add-darwin64-arm64-cc-build-target.patch',
+        # https://github.com/openssl/openssl/pull/13694 '1.1.1i'
+        'openssl/0001-ndk22-fixes.patch',
     ]
 
     files_bins = ['openssl']
