@@ -4,11 +4,11 @@ from cerbero.utils import android, shell
 
 class Recipe(recipe.Recipe):
     name = 'wpewebkit'
-    version = '2.32.1'
-    stype = SourceType.TARBALL
+    version = '2.30.4'
+    stype = SourceType.GIT
     btype = BuildType.CMAKE
-    url = 'https://wpewebkit.org/releases/wpewebkit-{0}.tar.xz'.format(version)
-    tarball_checksum = '7b6b39a12ccf3f84da4cc6ac59e02fbe328f7476eaeb9c23de9b9288c2c2f39c'
+    remotes = {'origin': 'https://github.com/MortimerGoro/WebKit.git'}
+    commit = 'cfd784ca2bc39b7968cd06c3b0bc834035c37ca3'
     deps = [
         'cairo',
         'gettext',
@@ -35,6 +35,8 @@ class Recipe(recipe.Recipe):
                         -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG -O2 \
                         -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG -O2 \
                         -DLOG_DISABLED=1 \
+                        -DUSE_SOUP2=ON \
+                        -DUSE_LCMS=OFF \
                         -DCMAKE_BUILD_TYPE=Release -GNinja'
 
     files_libs = [
@@ -162,20 +164,7 @@ class Recipe(recipe.Recipe):
             self.append_env('LDFLAGS', '-L' + stl_libdir, '-landroid', '-llog', '-lm', '-lc++_shared', '-lintl', '-lwebpdemux', '-lwebp', '-O2')
             # Placeholder to allow enabling debug externally
             self.append_env('WEBKIT_DEBUG', '')
-            self.patches += [
-                'wpewebkit/0001-Android-remove-uses-of-shm_open-and-shm_unlink.patch',
-                'wpewebkit/0001-Android-logging-macro.patch',
-                'wpewebkit/0001-Android-spawn-services.patch',
-                'wpewebkit/0001-Android-web-network-process-entrypoint.patch',
-                'wpewebkit/0001-Android-terminate-process.patch',
-                'wpewebkit/0001-Android-disable-pson.patch',
-                'wpewebkit/0001-Try-to-find-libz-with-pkg-config.patch',
-                'wpewebkit/0001-Scroll-related-changes.patch',
-                'wpewebkit/0001-GLContextEGL-don-t-attempt-to-swap-buffers-for-surfa.patch',
-                'wpewebkit/0001-ThreadedCompositor-allow-null-native-surface-handles.patch',
-                'wpewebkit/0001-wpewebkit-try-to-find-icu-with-pkg-config.patch',
-                'wpewebkit/0001-wpewebkit-try-to-find-freetype-png-and-others-with-p.patch',
-            ]
+            self.patches += []
         else:
             self.deps.append('icu')
             self.append_env('CXXFLAGS', '-I{0}/include'.format(self.config.prefix), '-licui18n -licuuc -licudata')
